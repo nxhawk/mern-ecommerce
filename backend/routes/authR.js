@@ -4,6 +4,8 @@ const userCtrl = require('../controllers/UserCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 
 router.post('/register', userCtrl.createUser);
+router.post('/forgot-password-token', userCtrl.forgotPasswordToken);
+router.put('/password', authMiddleware, userCtrl.updatePassword);
 router.post('/login', userCtrl.loginUserCtrl);
 router.get('/all-users', userCtrl.getallUser);
 router.get("/refresh", userCtrl.handleRefreshToken);

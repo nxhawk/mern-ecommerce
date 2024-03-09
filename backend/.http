@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
   "email": "haonhat2729@gmail.com",
-  "password":"12345"
+  "password":"12345678"
 }
 
 ###
@@ -84,3 +84,20 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:4000/api/product/65ebc923cca4786e1dd69382
+
+###
+PUT http://localhost:4000/api/user/password
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk1NzQ5OSwiZXhwIjoxNzEwMDQzODk5fQ.h_H1kAKiMXx-Dtz4SPqPjJWIPNx8Cimx-9ExsudpzWE
+Content-Type: application/json
+
+{
+  "password":"12345678"
+}
+
+###
+POST http://localhost:4000/api/user/forgot-password-token
+Content-Type: application/json
+
+{
+  "email":"haonhat2729@gmail.com"
+}
