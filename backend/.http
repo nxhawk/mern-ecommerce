@@ -31,3 +31,53 @@ Content-Type: application/json
 
 ###
 GET http://localhost:4000/api/blog/65ec07298077247af7bd9055
+
+###
+GET http://localhost:4000/api/blog/
+
+###
+PUT http://localhost:4000/api/blog/likes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk2ODcxMywiZXhwIjoxNzEwMDU1MTEzfQ.WvY0GiTSbaPdMDhRVQJY_jIuyaJzfU1j5_fUJYy9hDM
+Content-Type: application/json
+
+{
+  "blogId": "65ec07298077247af7bd9055"
+}
+
+###
+PUT http://localhost:4000/api/blog/dislikes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk2ODcxMywiZXhwIjoxNzEwMDU1MTEzfQ.WvY0GiTSbaPdMDhRVQJY_jIuyaJzfU1j5_fUJYy9hDM
+Content-Type: application/json
+
+{
+  "blogId": "65ec07298077247af7bd9055"
+}
+
+###
+POST http://localhost:4000/api/category
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk2OTYxOCwiZXhwIjoxNzEwMDU2MDE4fQ.EpwhcpgTQOJLLOzOf2KeZkH9qGHa7TWXy6szbmAV7Gc
+Content-Type: application/json
+
+{
+  "title":"Helel"
+}
+
+###
+PUT http://localhost:4000/api/product/wishlist
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk3Nzg2OSwiZXhwIjoxNzEwMDY0MjY5fQ.RFEy0KRryMum4Jbl2weT-db077GMefANm2QBi4RxQ7U
+Content-Type: application/json
+
+{
+  "prodId":"65ebde148e78f5e447a48119"
+}
+
+###
+PUT http://localhost:4000/api/product/rating
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk3Nzg2OSwiZXhwIjoxNzEwMDY0MjY5fQ.RFEy0KRryMum4Jbl2weT-db077GMefANm2QBi4RxQ7U
+Content-Type: application/json
+
+{
+  "star":4, 
+  "prodId":"65ebde148e78f5e447a48119", 
+  "comment":"Hay vcl"
+}
