@@ -51,6 +51,38 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   }
 })
 
+//admin login
+const loginAdmin = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  // check if user exists or not 
+  const findAdmin = await UserM.findOne({ email });
+  if (findAdmin.role !== 'admin') throw new Error("Not authorized");
+  if (findAdmin && await findAdmin.isPasswordMatched(password)) {
+    const refreshToken = await generateRefreshToken(findAdmin?._id);
+    const updateuser = await UserM.findByIdAndUpdate(findAdmin?._id, {
+      refreshToken
+    }, {
+      new: true,
+    });
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      maxAge: 72 * 60 * 60 * 1000,
+    });
+
+    res.json({
+      _id: findAdmin?._id,
+      firstName: findAdmin?.firstName,
+      lastName: findAdmin?.lastName,
+      email: findAdmin?.email,
+      mobile: findAdmin?.mobile,
+      token: generateToken(findAdmin?._id)
+    });
+  } else {
+    throw new Error("Invalid Credentials");
+  }
+})
+
 // handle refresh token
 const handleRefreshToken = asyncHandler(async (req, res, next) => {
   const cookie = req.cookies;
@@ -242,6 +274,27 @@ const resetPassword = asyncHandler(async (req, res, next) => {
   res.json(user);
 })
 
+const getWishlist = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  try {
+    const findUser = await userM.findById(_id).populate("wishlist");
+    res.json(findUser);
+  } catch (err) {
+    throw new Error(err);
+  }
+})
+
+// save user address
+const saveAddress = asyncHandler(async (req, res, next) => {
+  const { _id } = req.user;
+  try {
+    const updatedUser = await userM.findByIdAndUpdate(_id, {
+      address: req?.body?.address
+    }, { new: true });
+    res.json(updatedUser);
+  } catch (err) { throw new Error(err); }
+})
+
 module.exports = {
   createUser,
   loginUserCtrl,
@@ -256,4 +309,7 @@ module.exports = {
   updatePassword,
   forgotPasswordToken,
   resetPassword,
+  loginAdmin,
+  getWishlist,
+  saveAddress
 };

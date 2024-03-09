@@ -9,12 +9,17 @@ router.put('/reset-password/:token', userCtrl.resetPassword);
 
 router.put('/password', authMiddleware, userCtrl.updatePassword);
 router.post('/login', userCtrl.loginUserCtrl);
+router.post('/admin-login', userCtrl.loginAdmin);
+
 router.get('/all-users', userCtrl.getallUser);
 router.get("/refresh", userCtrl.handleRefreshToken);
 router.get("/logout", userCtrl.logout);
+router.get('/wishlist', authMiddleware, userCtrl.getWishlist);
 router.get('/:id', authMiddleware, isAdmin, userCtrl.getaUser);
+
 router.delete("/:id", userCtrl.deleteaUser);
 router.put("/edit-user", authMiddleware, userCtrl.updateaUser);
+router.put("/save-address", authMiddleware, userCtrl.saveAddress);
 router.put("/block-user/:id", authMiddleware, isAdmin, userCtrl.blockUser);
 router.put("/unblock-user/:id", authMiddleware, isAdmin, userCtrl.unblockUser);
 
