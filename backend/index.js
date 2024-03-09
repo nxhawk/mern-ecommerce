@@ -23,6 +23,8 @@ app.use('/api/category', require('./routes/prodcategoryR'));
 app.use('/api/blogcategory', require('./routes/blogCatR'));
 app.use("/api/brand", require('./routes/brandR'));
 app.use("/api/coupon", require('./routes/couponR'));
+app.use("/api/color", require('./routes/colorR'));
+app.use("/api/enquiry", require('./routes/enqR'));
 
 // error handlers
 app.use(notFound);
