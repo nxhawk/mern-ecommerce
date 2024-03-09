@@ -1,0 +1,111 @@
+POST http://localhost:4000/api/user/register
+Content-Type: application/json
+
+{
+  "firstname": "nhat",
+  "lastname": "nguyen",
+  "email": "haonhat12@gmail.com",
+  "mobile":"0123456788",
+  "password":"1234567"
+}
+
+###
+POST http://localhost:4000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "haonhat2729@gmail.com",
+  "password":"12345"
+}
+
+###
+GET http://localhost:4000/api/user/all-users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTkxMTU2NiwiZXhwIjoxNzEwMTcwNzY2fQ.r5_9HRTAcYTu8U39oeYjBlX-E-yNvlSrnQeAYBwp_dI
+
+###
+GET http://localhost:4000/api/user/65eb2dd2310f80205f037334
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTkxMTgwMywiZXhwIjoxNzEwMTcxMDAzfQ.QwzpRHzRzKrPbgsZ6avJJgfMrgid1OB6sCXhKpdgLv4
+
+###
+DELETE http://localhost:4000/api/user/65eb1f3016aa40afb6fd5c8c
+
+###
+PUT http://localhost:4000/api/user/edit-user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTkxMjMzNSwiZXhwIjoxNzEwMTcxNTM1fQ.fGVCAt4icg4FoWORwHoxAZfUJbEcTSjSLNwog8ydf5U
+Content-Type: application/json
+
+{
+  "firstname": "hao",
+  "lastname": "nguyen",
+  "email": "haonhat2729@gmail.com",
+  "mobile":"0123456799"
+}
+
+###
+PUT http://localhost:4000/api/user/unblock-user/65eb2dd2310f80205f037334
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTkxMjkxNSwiZXhwIjoxNzEwMTcyMTE1fQ.ejnOTCtbUTKeuBdJipA7_YQMMw2y3wbe7B5B-qitwFY
+
+###
+GET http://localhost:4000/api/user/refresh
+
+###
+POST http://localhost:4000/api/product/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk1NjU5OCwiZXhwIjoxNzEwMDQyOTk4fQ.VMHw9TYBs42FkG-ABeKrm7N-tqXfwD7rYZWd6cD7eB4
+Content-Type: application/json
+
+{
+  "title":"Apple Watch",
+  "slug":"abc",
+  "description":"first product name",
+  "price":500,
+  "quantity":100,
+  "brand":"Apple",
+  "category":"Watch"
+}
+
+###
+GET http://localhost:4000/api/product/65ebc923cca4786e1dd69382
+
+###
+GET http://localhost:4000/api/product?fields=-title,-price
+
+###
+PUT http://localhost:4000/api/product/65ebc923cca4786e1dd69382
+Content-Type: application/json
+
+{
+  "title":"Apple Watch abc",
+  "description":"first product name",
+  "price":500,
+  "quantity":100,
+  "brand":"Apple",
+  "category":"Watch"
+}
+
+###
+DELETE http://localhost:4000/api/product/65ebc923cca4786e1dd69382
+
+###
+PUT http://localhost:4000/api/user/password
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk1NzQ5OSwiZXhwIjoxNzEwMDQzODk5fQ.h_H1kAKiMXx-Dtz4SPqPjJWIPNx8Cimx-9ExsudpzWE
+Content-Type: application/json
+
+{
+  "password":"12345678"
+}
+
+###
+POST http://localhost:4000/api/user/forgot-password-token
+Content-Type: application/json
+
+{
+  "email":"haonhat2729@gmail.com"
+}
+
+###
+PUT http://localhost:4000/api/user/reset-password/470f6fb60755a6517996bcd58e83350168d073a3421d161795c6edd16e7f3992
+Content-Type: application/json
+
+{
+  "password":"12345"
+}

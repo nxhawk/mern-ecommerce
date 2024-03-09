@@ -18,6 +18,7 @@ app.use(cookieParser());
 // main routes
 app.use('/api/user', require('./routes/authR'))
 app.use('/api/product', require('./routes/productR'))
+app.use('/api/blog', require('./routes/blogR'))
 
 // error handlers
 app.use(notFound);
