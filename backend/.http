@@ -73,11 +73,23 @@ Content-Type: application/json
 
 ###
 PUT http://localhost:4000/api/product/rating
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk3Nzg2OSwiZXhwIjoxNzEwMDY0MjY5fQ.RFEy0KRryMum4Jbl2weT-db077GMefANm2QBi4RxQ7U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk3ODQyNSwiZXhwIjoxNzEwMDY0ODI1fQ.82q_jMP73qG91nYYcI7o_n65e_yGfZRfISW4sucDHMU
 Content-Type: application/json
 
 {
   "star":4, 
   "prodId":"65ebde148e78f5e447a48119", 
   "comment":"Hay vcl"
+}
+
+
+###
+POST http://localhost:4000/api/coupon
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk3ODQyNSwiZXhwIjoxNzEwMDY0ODI1fQ.82q_jMP73qG91nYYcI7o_n65e_yGfZRfISW4sucDHMU
+Content-Type: application/json
+
+{
+  "name":"Super sale", 
+  "expiry":"Thu, 01 Dec 2022 07:33:58 GMT", 
+  "discount":30
 }
