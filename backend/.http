@@ -47,3 +47,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxM
 
 ###
 GET http://localhost:4000/api/user/refresh
+
+###
+POST http://localhost:4000/api/product/
+Content-Type: application/json
+
+{
+  "title":"Apple Watch",
+  "slug":"abc",
+  "description":"first product name",
+  "price":500,
+  "quantity":100,
+  "brand":"Apple",
+  "category":"Watch"
+}
+
+###
+GET http://localhost:4000/api/product/65ebc923cca4786e1dd69382
+
+###
+GET http://localhost:4000/api/product/
