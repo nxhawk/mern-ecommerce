@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <>
       <footer className='py-4'>
-        <div className='container-xxl'>
+        <div className='container-xl'>
           <div className='row align-items-center'>
             <div className='col-5'>
               <div className='footer-top-data d-flex gap-30 align-items-center'>
@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
       </footer>
       <footer className='py-3'>
-        <div className='container-xxl'>
+        <div className='container-xl'>
           <div className='row'>
             <div className='col-4'>
               <h4 className='text-white'>Contact US</h4>
@@ -37,16 +37,16 @@ const Footer = () => {
                 <a href='tel:+91 8264954234' className='mt-3 d-block mb-1 text-white'>+91 8264954234</a>
                 <a href='mailto:admin@gmail.com' className='mt-2 d-block mb-0 text-white'>admin@gmail.com</a>
                 <div className='social_icons d-flex align-items-center gap-30 mt-4'>
-                  <a href='' className='text-white'>
+                  <a href='/' className='text-white'>
                     <BsLinkedin className='fs-4' />
                   </a>
-                  <a href='' className='text-white'>
+                  <a href='/' className='text-white'>
                     <BsInstagram className='fs-4' />
                   </a>
-                  <a href='' className='text-white'>
+                  <a href='/' className='text-white'>
                     <BsGithub className='fs-4' />
                   </a>
-                  <a href='' className='text-white'>
+                  <a href='/' className='text-white'>
                     <BsYoutube className='fs-4' />
                   </a>
                 </div>
@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
       </footer>
       <footer className='py-4'>
-        <div className='container-xxl'>
+        <div className='container-xl'>
           <div className='row'>
             <div className='col-12'>
               <p className='text-center mb-0 text-white'>&copy; {new Date().getFullYear()}; Powered by Developer's Corner</p>
