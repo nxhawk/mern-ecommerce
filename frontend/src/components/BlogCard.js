@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import blog from '../images/blog-1.jpg';
 
 const BlogCard = () => {
   return (
     <div className='blog-card'>
       <div className='card-images'>
-        <img src='images/blog-1.jpg' alt='blog' className='img-fluid w-100' />
+        <img src={blog} alt='blog' className='img-fluid w-100' />
       </div>
       <div className='blog-content'>
         <p className='date'>1 Dec, 2023</p>

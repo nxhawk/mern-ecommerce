@@ -13,7 +13,7 @@ const Home = () => {
           <div className='row'>
             <div className='col-6'>
               <div className='main-banner position-relative'>
-                <img src='images/main-banner-1.jpg' alt='main banner' className='img-fluid rounded-3' />
+                <img src='../images/main-banner-1.jpg' alt='main banner' className='img-fluid rounded-3' />
                 <div className='main-banner-content position-absolute'>
                   <h4>SUPERCHARGED FOR PROS.</h4>
                   <h5>iPad S13+ Pro.</h5>

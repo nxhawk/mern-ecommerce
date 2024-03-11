@@ -2,6 +2,13 @@ import React from 'react'
 import ReactStars from 'react-rating-stars-component'
 import { Link, useLocation } from 'react-router-dom'
 
+import productcompare from '../images/prodcompare.svg';
+import wish from '../images/wish.svg';
+import watch from '../images/watch.jpg';
+import watch2 from '../images/speaker.jpg';
+import addcart from '../images/add-cart.svg';
+import view from '../images/view.svg';
+
 const ProductCard = ({ grid }) => {
   let location = useLocation();
 
@@ -11,12 +18,12 @@ const ProductCard = ({ grid }) => {
         <Link to=':id' className='product-card position-relative'>
           <div className='wishlist-icon position-absolute'>
             <Link>
-              <img src='images/wish.svg' alt='wishlist' />
+              <img src={wish} alt='wishlist' />
             </Link>
           </div>
           <div className='product-image'>
-            <img src='images/watch.jpg' alt='product' className='img-fluid' />
-            <img src='images/speaker.jpg' alt='product' className='img-fluid' />
+            <img src={watch} alt='product' className='img-fluid' />
+            <img src={watch2} alt='product' className='img-fluid' />
           </div>
           <div className='product-details'>
             <h6 className='brand'>Havels</h6>
@@ -36,13 +43,13 @@ const ProductCard = ({ grid }) => {
           <div className='action-bar position-absolute'>
             <div className='d-flex flex-column gap-15'>
               <Link>
-                <img src='images/prodcompare.svg' alt='prodcompare' />
+                <img src={productcompare} alt='prodcompare' />
               </Link>
               <Link>
-                <img src='images/view.svg' alt='view' />
+                <img src={view} alt='view' />
               </Link>
               <Link>
-                <img src='images/add-cart.svg' alt='addcart' />
+                <img src={addcart} alt='addcart' />
               </Link>
             </div>
           </div>
