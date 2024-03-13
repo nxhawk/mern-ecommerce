@@ -9,7 +9,6 @@ const getBlogCategories = async () => {
 
 const bCategoryService = {
   getBlogCategories,
-
 }
 
 export default bCategoryService
