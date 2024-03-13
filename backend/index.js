@@ -27,6 +27,7 @@ app.use("/api/brand", require('./routes/brandR'));
 app.use("/api/coupon", require('./routes/couponR'));
 app.use("/api/color", require('./routes/colorR'));
 app.use("/api/enquiry", require('./routes/enqR'));
+app.use("/api/upload", require('./routes/uploadR'));
 
 // error handlers
 app.use(notFound);

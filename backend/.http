@@ -116,9 +116,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxM
 
 ###
 POST http://localhost:4000/api/brand/
-Authorization: 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcxMDM0MjEyNiwiZXhwIjoxNzEwNDI4NTI2fQ.w48jtTt4H5eEcSaOexNfUKigIMykHc4i_9TsmipnE-s
 Content-Type: application/json
 
 {
-  
+  "title":"Tv"
+}
+
+###
+POST http://localhost:4000/api/color
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcxMDM0MzA5MCwiZXhwIjoxNzEwNDI5NDkwfQ._vOthuQPwHSpVp0oNHB8w_DU4a9gJR4f_pO_zFlakJg
+Content-Type: application/json
+
+{
+  "title":"Pink"
 }
