@@ -1,38 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import brandService from './brandService'
+import bCategoryService from './bcategoryService'
 
-export const getBrands = createAsyncThunk('brand/get-brands', async (thunkAPI) => {
+export const getBlogCategories = createAsyncThunk('blogCategory/get-categories', async (thunkAPI) => {
   try {
-    return await brandService.getBrands();
+    return await bCategoryService.getBlogCategories();
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
 })
 
 const initialState = {
-  brands: [],
+  bCategories: [],
   isError: false,
   isLoading: false,
   isSuccess: false,
   message: ""
 }
 
-export const brandSlice = createSlice({
-  name: 'brands',
+export const bCategorySlice = createSlice({
+  name: 'bCategories',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getBrands.pending, (state) => {
+      .addCase(getBlogCategories.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getBrands.fulfilled, (state, action) => {
+      .addCase(getBlogCategories.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.brands = action.payload;
+        state.bCategories = action.payload;
       })
-      .addCase(getBrands.rejected, (state, action) => {
+      .addCase(getBlogCategories.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
@@ -41,4 +41,4 @@ export const brandSlice = createSlice({
   }
 })
 
-export default brandSlice.reducer;
+export default bCategorySlice.reducer;

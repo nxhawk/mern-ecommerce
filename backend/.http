@@ -113,3 +113,12 @@ Content-Type: application/json
 ###
 GET http://localhost:4000/api/user/cart
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk5NTc0NSwiZXhwIjoxNzEwMDgyMTQ1fQ.ADw_CtVJO8Ag4gl6Zjb6bu2CyIYiqPAddXBVlIGKPBI
+
+###
+POST http://localhost:4000/api/brand/
+Authorization: 
+Content-Type: application/json
+
+{
+  
+}
