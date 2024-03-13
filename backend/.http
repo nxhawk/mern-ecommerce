@@ -61,7 +61,8 @@ Content-Type: application/json
 {
   "title":"Helel"
 }
-
+###
+GET http://localhost:4000/api/product
 ###
 PUT http://localhost:4000/api/product/wishlist
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWIyZGMxMzEwZjgwMjA1ZjAzNzMzMSIsImlhdCI6MTcwOTk3Nzg2OSwiZXhwIjoxNzEwMDY0MjY5fQ.RFEy0KRryMum4Jbl2weT-db077GMefANm2QBi4RxQ7U
