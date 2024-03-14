@@ -11,8 +11,11 @@ import { ImBlog } from 'react-icons/im'
 import { IoIosNotifications } from 'react-icons/io'
 
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const { Header, Sider, Content } = Layout;
+
 
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -190,9 +193,18 @@ const MainLayout = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <main>
-            <Outlet />
-          </main>
+          <ToastContainer
+            position="top-right"
+            autoClose={250}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            theme="light"
+          />
+          <Outlet />
         </Content>
       </Layout>
     </Layout>

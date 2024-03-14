@@ -31,13 +31,11 @@ const columns = [
   {
     title: 'Color',
     dataIndex: 'color',
-
   },
   {
     title: 'Price',
     dataIndex: 'price',
     sorter: (a, b) => a.price.length - b.price.length,
-
   },
   {
     title: 'Action',
@@ -59,7 +57,7 @@ const Productlist = () => {
       title: productState[i].title,
       brand: productState[i].brand,
       category: productState[i].category,
-      color: productState[i].color,
+      color: productState[i].color[0],
       price: `${productState[i].price}`,
       action: (
         <>
