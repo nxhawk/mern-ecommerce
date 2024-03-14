@@ -38,7 +38,7 @@ const Bloglist = () => {
   for (let i = 0; i < blogState.length; i++) {
     data1.push({
       key: i + 1,
-      title: blogState[i].name,
+      title: blogState[i].title,
       category: blogState[i].category,
       action: (
         <>
