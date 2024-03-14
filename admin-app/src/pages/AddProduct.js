@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import "react-widgets/styles.css"
 import Dropzone from 'react-dropzone'
 import { uploadImg, deleteImg } from '../features/upload/uploadSlice';
-import { createProduct } from '../features/product/productSlice';
+import { createProduct, resetState } from '../features/product/productSlice';
 import { toast } from 'react-toastify';
 
 let schema = yup.object().shape({
@@ -93,6 +93,7 @@ const AddProduct = () => {
       formik.resetForm();
       setColor(null);
       setTimeout(() => {
+        dispatch(resetState());
         navigate('/admin/list-product');
       }, 3000)
     }

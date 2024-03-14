@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import enquiryService from './enquiryService'
 
 export const getEnquiries = createAsyncThunk('enquiry/get-colors', async (thunkAPI) => {
@@ -8,6 +8,8 @@ export const getEnquiries = createAsyncThunk('enquiry/get-colors', async (thunkA
     return thunkAPI.rejectWithValue(error);
   }
 })
+
+export const resetState = createAction("Reset_all");
 
 const initialState = {
   enquiries: [],
@@ -38,6 +40,7 @@ export const enquirySlice = createSlice({
         state.isSuccess = false;
         state.message = action.error;
       })
+      .addCase(resetState, () => initialState);
   }
 })
 

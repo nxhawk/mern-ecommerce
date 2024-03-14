@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
-import { createCategory } from '../features/pcategory/pcategorySlice';
+import { createCategory, resetState } from '../features/pcategory/pcategorySlice';
 
 let schema = yup.object().shape({
   title: yup.string().required('Product Category is required'),
@@ -35,6 +35,7 @@ const AddCat = () => {
       dispatch(createCategory(values));
       formik.resetForm();
       setTimeout(() => {
+        dispatch(resetState());
         navigate('/admin/list-category');
       }, 3000)
     }

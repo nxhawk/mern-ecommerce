@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import CustomInput from '../components/CustomInput'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Dropzone from 'react-dropzone'
 import { uploadImg, deleteImg } from '../features/upload/uploadSlice';
 import { toast } from 'react-toastify';
-import { Select } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -13,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import "react-widgets/styles.css"
 import { getBlogCategories } from '../features/bcategory/bcategorySlice';
-import { createBlog } from '../features/blogs/blogSlice';
+import { createBlog, resetState } from '../features/blogs/blogSlice';
 
 let schema = yup.object().shape({
   title: yup.string().required('Title is required'),
@@ -64,6 +63,7 @@ const Addblog = () => {
       dispatch(createBlog(values));
       formik.resetForm();
       setTimeout(() => {
+        dispatch(resetState())
         navigate('/admin/blog-list');
       }, 3000)
     }
