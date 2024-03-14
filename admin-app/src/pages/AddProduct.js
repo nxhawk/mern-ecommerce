@@ -28,7 +28,6 @@ let schema = yup.object().shape({
   tags: yup.string().required('Tag is required'),
   color: yup.array().min(1, 'Pick at least one color').required('Color is required'),
   quantity: yup.number().required('Quantity is required'),
-
 });
 
 
