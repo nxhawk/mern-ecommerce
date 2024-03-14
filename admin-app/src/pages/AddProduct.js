@@ -13,6 +13,7 @@ import Multiselect from "react-widgets/Multiselect"
 import "react-widgets/styles.css"
 import Dropzone from 'react-dropzone'
 import { uploadImg, deleteImg } from '../features/upload/uploadSlice';
+import { createProduct } from '../features/product/productSlice';
 
 let schema = yup.object().shape({
   title: yup.string().required('Title is required'),
@@ -72,9 +73,7 @@ const AddProduct = () => {
     },
     validationSchema: schema,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values));
-      // TODO: createProduct
-      dispatch();
+      dispatch(createProduct(values));
     }
   })
   return (

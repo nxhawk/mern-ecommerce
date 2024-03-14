@@ -6,12 +6,15 @@ const userM = require('../models/userM');
 
 const createProduct = asyncHandler(async (req, res, next) => {
   try {
+
     if (req.body.title) {
       req.body.slug = slugify(req.body.title);
     }
+
     const newProduct = await productM.create(req.body);
     res.json(newProduct);
   } catch (err) {
+    console.error(err);
     throw new Error(err);
   }
 })
