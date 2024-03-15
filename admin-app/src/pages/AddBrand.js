@@ -32,7 +32,7 @@ const AddBrand = () => {
     if (isSuccess && createdBrand) {
       toast.success('Brand Added Successfully!');
     }
-    if (isSuccess && !updatedBrand) {
+    if (isSuccess && updatedBrand) {
       toast.success('Brand Updated Successfully!');
       navigate('/admin/list-brand');
     }
