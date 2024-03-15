@@ -34,6 +34,7 @@ const AddBrand = () => {
     }
     if (isSuccess && updatedBrand) {
       toast.success('Brand Updated Successfully!');
+      dispatch(resetState());
       navigate('/admin/list-brand');
     }
     if (isError) {
@@ -55,7 +56,6 @@ const AddBrand = () => {
           brandData: values
         }
         dispatch(updateABrand(data));
-        dispatch(resetState());
       } else {
         dispatch(createBrand(values));
         formik.resetForm();
