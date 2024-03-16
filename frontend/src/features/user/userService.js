@@ -6,9 +6,15 @@ const register = async (userData) => {
   return response.data;
 }
 
+const login = async (userData) => {
+  const response = await axios.post(`${base_url}user/login`, userData);
+  return response.data;
+}
+
 
 const authService = {
-  register
+  register,
+  login
 }
 
 export default authService

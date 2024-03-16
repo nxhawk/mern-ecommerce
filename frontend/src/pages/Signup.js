@@ -4,7 +4,7 @@ import BreadCrumb from '../components/BreadCrumb'
 import Container from '../components/Container'
 import CustomInput from '../components/CustomInput'
 
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -13,7 +13,7 @@ import { registerUser } from '../features/user/userSlice'
 let schema = yup.object().shape({
   firstname: yup.string().required('First Name is required'),
   lastname: yup.string().required('Last Name is required'),
-  email: yup.string().required('Email is required'),
+  email: yup.string().email("Email should be valid").required('Email is required'),
   mobile: yup.string().required('Mobile is required'),
   password: yup.string().required('Password is required'),
 });
