@@ -35,8 +35,8 @@ const Colorlist = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getColors())
     dispatch(resetState())
+    dispatch(getColors())
   }, [])
   const colorState = useSelector((state) => state.color.colors)
   const data1 = [];
