@@ -38,6 +38,7 @@ function App() {
             <Route path='blog' element={<Addblog />} />
             <Route path='coupon-list' element={<Couponlist />} />
             <Route path='coupon' element={<AddCoupon />} />
+            <Route path='coupon/:id' element={<AddCoupon />} />
             <Route path='blog-category-list' element={<Blogcatlist />} />
             <Route path='blog-category' element={<AddblogCat />} />
             <Route path='blog-category/:id' element={<AddblogCat />} />
@@ -45,6 +46,7 @@ function App() {
             <Route path='customers' element={<Customers />} />
             <Route path='list-color' element={<Colorlist />} />
             <Route path='color' element={<AddColor />} />
+            <Route path='color/:id' element={<AddColor />} />
             <Route path='list-category' element={<Categorylist />} />
             <Route path='category' element={<AddCat />} />
             <Route path='category/:id' element={<AddCat />} />
