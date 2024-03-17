@@ -104,6 +104,7 @@ const getallProduct = asyncHandler(async (req, res, next) => {
 });
 
 const addToWishList = asyncHandler(async (req, res) => {
+  console.log(req);
   const { _id } = req.user;
   const { prodId } = req.body;
   try {

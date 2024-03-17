@@ -18,8 +18,10 @@ export const loginUser = createAsyncThunk('auth/login', async (user, thunkAPI) =
   }
 })
 
+const getUserfromLocalStorage = localStorage.getItem('customer') ? JSON.parse(localStorage.getItem('customer')) : null
+
 const initialState = {
-  user: "",
+  user: getUserfromLocalStorage,
   isError: false,
   isLoading: false,
   isSuccess: false,
