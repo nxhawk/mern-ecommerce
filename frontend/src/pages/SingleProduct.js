@@ -12,7 +12,14 @@ import Container from '../components/Container'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAProduct } from '../features/products/productSlice'
 
+import { toast } from 'react-toastify';
+import { addProToCart } from '../features/user/userSlice'
+
 const SingleProduct = () => {
+  const [color, setColor] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+
+
   const location = useLocation();
   const getProductId = location.pathname.split('/')[2];
   const dispatch = useDispatch();
@@ -21,6 +28,20 @@ const SingleProduct = () => {
   useEffect(() => {
     dispatch(getAProduct(getProductId));
   }, [])
+
+  const uploadCart = () => {
+    if (color == null) {
+      toast.error('Please select a color')
+      return false;
+    }
+    dispatch(addProToCart({
+      productId: productState?._id,
+      quantity,
+      color,
+      price: productState?.price,
+
+    }))
+  }
 
   const [orderedProduct, setOrderedProduct] = useState(true);
   const copyToClipboard = (text) => {
@@ -105,15 +126,20 @@ const SingleProduct = () => {
                     </div>
                     <div className='d-flex gap-10 flex-column mt-2 mb-3'>
                       <h3 className='product-heading'>Color: </h3>
-                      <Color />
+                      <Color colorData={productState?.color} setColor={setColor} />
                     </div>
                     <div className='d-flex align-items-center gap-15 mt-2 mb-3'>
                       <h3 className='product-heading'>Quantity: </h3>
                       <div className=''>
-                        <input type='number' name='' id='' style={{ "width": "70px" }} min={1} max={10} className='form-control' />
+                        <input type='number' name='' id='' style={{ "width": "70px" }} min={1} max={10} className='form-control'
+                          onChange={(e) => setQuantity(e.target.value)}
+                          value={quantity}
+                        />
                       </div>
                       <div className='d-flex align-items-center gap-30 ms-4'>
-                        <button className='button border-0'>Add to Cart</button>
+                        <button className='button border-0'
+                          onClick={() => uploadCart()}
+                        >Add to Cart</button>
                         <button className='button signup'>Buy It Now</button>
                       </div>
                     </div>
