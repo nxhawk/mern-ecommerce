@@ -3,7 +3,7 @@ import ReactStars from 'react-rating-stars-component'
 import { Link } from 'react-router-dom'
 import watch from '../images/watch.jpg';
 
-const SpecialProduct = ({ title, brand, totalrating, price, sold, quantity, image }) => {
+const SpecialProduct = ({ id, title, brand, totalrating, price, sold, quantity, image }) => {
   return (
     <div className='col-6 mb-3'>
       <div className='special-product-card'>
@@ -41,7 +41,7 @@ const SpecialProduct = ({ title, brand, totalrating, price, sold, quantity, imag
                 <div className="progress-bar" style={{ width: `${(quantity / (quantity + sold) * 100)}%` }}></div>
               </div>
             </div>
-            <Link className='button'>Add to Cart</Link>
+            <Link to={`/product/${id}`} className='button'>View</Link>
           </div>
         </div>
       </div>

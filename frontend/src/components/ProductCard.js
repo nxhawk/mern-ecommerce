@@ -9,7 +9,7 @@ import addcart from '../images/add-cart.svg';
 import view from '../images/view.svg';
 import { addToWishlist } from '../features/products/productSlice'
 
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 const ProductCard = ({ grid, data }) => {
   let location = useLocation();
   const dispatch = useDispatch();
@@ -22,8 +22,7 @@ const ProductCard = ({ grid, data }) => {
         data?.map((item, index) => {
           return (
             <div key={index} className={`${location.pathname === "/product" ? `gr-${grid}` : "col-3"}`}>
-              <Link
-                // to={`${location.pathname === "/" ? '/product/:id' : location.pathname === "/product/:id" ? '/product/:id' : ':id'}`} 
+              <div
                 className='product-card position-relative'>
                 <div className='wishlist-icon position-absolute'>
                   <button className='border-0 bg-transparent' onClick={(e) => { addtoWishlist(item?._id) }}>
@@ -57,7 +56,7 @@ const ProductCard = ({ grid, data }) => {
                     <Link>
                       <img src={productcompare} alt='prodcompare' />
                     </Link>
-                    <Link>
+                    <Link to={`/product/${item?._id}`}>
                       <img src={view} alt='view' />
                     </Link>
                     <Link>
@@ -65,7 +64,7 @@ const ProductCard = ({ grid, data }) => {
                     </Link>
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           )
         })

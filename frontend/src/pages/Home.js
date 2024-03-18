@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Marquee from 'react-fast-marquee'
 import BlogCard from '../components/BlogCard'
-import ProductCard from '../components/ProductCard'
 import SpecialProduct from '../components/SpecialProduct'
 import Container from '../components/Container'
 import { services } from '../utils/Data'
@@ -40,6 +39,7 @@ import { addToWishlist } from '../features/products/productSlice'
 import ReactStars from 'react-rating-stars-component'
 
 const Home = () => {
+  const navigate = useNavigate();
   const blogState = useSelector((state) => state?.blog?.blog)
   const productState = useSelector((state) => state?.product?.product)
 
@@ -208,7 +208,7 @@ const Home = () => {
               if (item.tags === 'featured')
                 return (
                   <div key={index} className='col-3'>
-                    <Link
+                    <div
                       className='product-card position-relative'>
                       <div className='wishlist-icon position-absolute'>
                         <button className='border-0 bg-transparent' onClick={(e) => { addtoWishlist(item?._id) }}>
@@ -236,18 +236,20 @@ const Home = () => {
                       </div>
                       <div className='action-bar position-absolute'>
                         <div className='d-flex flex-column gap-15'>
-                          <Link>
+                          <button className='border-0 bg-transparent'>
                             <img src={productcompare} alt='prodcompare' />
-                          </Link>
-                          <Link>
-                            <img src={view} alt='view' />
-                          </Link>
-                          <Link>
+                          </button>
+                          <button className='border-0 bg-transparent'>
+                            <img
+                              onClick={() => navigate(`/product/${item?._id}`)}
+                              src={view} alt='view' />
+                          </button>
+                          <button className='border-0 bg-transparent'>
                             <img src={addcart} alt='addcart' />
-                          </Link>
+                          </button>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 )
             })
@@ -309,7 +311,9 @@ const Home = () => {
             productState && productState?.map((item, index) => {
               if (item.tags === 'special')
                 return (
-                  <SpecialProduct key={index}
+                  <SpecialProduct
+                    key={index}
+                    id={item?._id}
                     title={item?.title}
                     brand={item?.brand}
                     totalrating={item?.totalrating.toString()}
@@ -363,15 +367,16 @@ const Home = () => {
                       </div>
                       <div className='action-bar position-absolute'>
                         <div className='d-flex flex-column gap-15'>
-                          <Link>
+                          <button className='border-0 bg-transparent'>
                             <img src={productcompare} alt='prodcompare' />
-                          </Link>
-                          <Link>
-                            <img src={view} alt='view' />
-                          </Link>
-                          <Link>
+                          </button>
+                          <button className='border-0 bg-transparent'>
+                            <img onClick={() => navigate(`/product/${item?._id}`)}
+                              src={view} alt='view' />
+                          </button>
+                          <button className='border-0 bg-transparent'>
                             <img src={addcart} alt='addcart' />
-                          </Link>
+                          </button>
                         </div>
                       </div>
                     </Link>
