@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom'
 
 import productcompare from '../images/prodcompare.svg';
 import wish from '../images/wish.svg';
-import watch from '../images/watch.jpg';
 import watch2 from '../images/speaker.jpg';
 import addcart from '../images/add-cart.svg';
 import view from '../images/view.svg';

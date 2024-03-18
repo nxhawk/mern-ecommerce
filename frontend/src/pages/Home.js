@@ -28,17 +28,37 @@ import brand8 from '../images/brand-08.png'
 import { useDispatch, useSelector } from "react-redux"
 import { getAllBlogs } from '../features/blogs/blogSlice'
 import moment from 'moment'
+import { getAllProducts } from '../features/products/productSlice'
+
+
+import productcompare from '../images/prodcompare.svg';
+import wish from '../images/wish.svg';
+import watch2 from '../images/speaker.jpg';
+import addcart from '../images/add-cart.svg';
+import view from '../images/view.svg';
+import { addToWishlist } from '../features/products/productSlice'
+import ReactStars from 'react-rating-stars-component'
 
 const Home = () => {
+  const blogState = useSelector((state) => state?.blog?.blog)
+  const productState = useSelector((state) => state?.product?.product)
+
   const dispatch = useDispatch();
   useEffect(() => {
     getBlogs();
+    getProducts();
   }, [])
+  const addtoWishlist = (id) => {
+    dispatch(addToWishlist(id))
+  }
+
   const getBlogs = () => {
     dispatch(getAllBlogs());
   }
-  const blogState = useSelector((state) => state.blog.blog)
 
+  const getProducts = () => {
+    dispatch(getAllProducts());
+  }
   return (
     <>
       <Container class1='home-wrapper-1 py-5'>
@@ -240,10 +260,22 @@ const Home = () => {
           </div>
         </div>
         <div className='row'>
-          <SpecialProduct />
-          <SpecialProduct />
-          <SpecialProduct />
-          <SpecialProduct />
+          {
+            productState && productState?.map((item, index) => {
+              if (item.tags === 'special')
+                return (
+                  <SpecialProduct key={index}
+                    title={item?.title}
+                    brand={item?.brand}
+                    totalrating={item?.totalrating.toString()}
+                    price={item?.price}
+                    sold={item?.sold}
+                    quantity={item?.quantity}
+                    image={item?.images[0]?.url}
+                  />
+                )
+            })
+          }
         </div>
       </Container>
       <Container class1='popular-wrapper py-5 home-wrapper-2'>
@@ -253,10 +285,55 @@ const Home = () => {
           </div>
         </div>
         <div className='row'>
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {
+            productState && productState?.map((item, index) => {
+              if (item.tags === 'popular')
+                return (
+                  <div key={index} className='col-3'>
+                    <Link
+                      className='product-card position-relative'>
+                      <div className='wishlist-icon position-absolute'>
+                        <button className='border-0 bg-transparent' onClick={(e) => { addtoWishlist(item?._id) }}>
+                          <img src={wish} alt='wishlist' />
+                        </button>
+                      </div>
+                      <div className='product-image'>
+                        <img src={item?.images[0].url} alt='product' className='img-fluid' />
+                        <img src={watch2} alt='product' className='img-fluid' />
+                      </div>
+                      <div className='product-details'>
+                        <h6 className='brand'>{item?.brand}</h6>
+                        <h5 className='product-title'>
+                          {item?.title}
+                        </h5>
+                        <ReactStars
+                          count={5}
+                          size={24}
+                          value={item?.totalrating.toString()}
+                          edit={false}
+                          activeColor="#ffd700"
+                        />
+
+                        <p className='price'>$ {item?.price}</p>
+                      </div>
+                      <div className='action-bar position-absolute'>
+                        <div className='d-flex flex-column gap-15'>
+                          <Link>
+                            <img src={productcompare} alt='prodcompare' />
+                          </Link>
+                          <Link>
+                            <img src={view} alt='view' />
+                          </Link>
+                          <Link>
+                            <img src={addcart} alt='addcart' />
+                          </Link>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                )
+            })
+          }
         </div>
       </Container>
       <Container class1='marquee-wrapper py-5'>
