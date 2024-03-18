@@ -25,6 +25,7 @@ router.get('/cart', authMiddleware, userCtrl.getUserCart);
 router.get('/:id', authMiddleware, isAdmin, userCtrl.getaUser);
 
 router.delete("/empty-cart", authMiddleware, userCtrl.emptyCart);
+router.delete("/delete-product-cart/:cartItemId", authMiddleware, userCtrl.removeProductFromCart);
 
 router.delete("/:id", userCtrl.deleteaUser);
 router.put("/edit-user", authMiddleware, userCtrl.updateaUser);
