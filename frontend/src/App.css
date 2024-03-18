@@ -794,6 +794,7 @@ footer .input-group-text{
 }
 /* Shipping page end */
 
-.error{
+.error,.errors{
   color: red;
+  font-size: 12px;
 }
