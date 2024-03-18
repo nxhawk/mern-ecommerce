@@ -19,7 +19,6 @@ const OurStore = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log('aaaa')
     getProducts();
   }, [])
   const getProducts = () => {

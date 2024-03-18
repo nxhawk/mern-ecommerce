@@ -6,15 +6,15 @@ const getProducts = async () => {
   return response.data;
 }
 
-const addToWishlist = async (proId) => {
-  const response = await axios.put(`${base_url}product/wishlist`, { proId }, config);
+const addToWishlist = async (prodId) => {
+  const response = await axios.put(`${base_url}product/wishlist`, { prodId }, config);
   return response.data;
 }
 
 
-const authService = {
+const productService = {
   getProducts,
   addToWishlist,
 }
 
-export default authService
+export default productService
