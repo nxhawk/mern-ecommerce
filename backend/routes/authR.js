@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const userCtrl = require('../controllers/UserCtrl');
+const paymentCtrl = require('../controllers/paymentCtrl');
+
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 
 router.post('/register', userCtrl.createUser);
@@ -11,7 +13,13 @@ router.put('/password', authMiddleware, userCtrl.updatePassword);
 router.post('/login', userCtrl.loginUserCtrl);
 router.post('/admin-login', userCtrl.loginAdmin);
 router.post('/cart', authMiddleware, userCtrl.userCart);
+
+router.post('/order/checkout', authMiddleware, paymentCtrl.checkout);
+router.post('/order/paymentVerification', authMiddleware, paymentCtrl.paymentVerification);
+
+
 router.post('/cart/applycoupon', authMiddleware, userCtrl.applyCoupon);
+router.post('/cart/create-order', authMiddleware, userCtrl.createOrder);
 router.post('/cart/cash-order', authMiddleware, userCtrl.createOrder);
 
 router.get('/all-users', userCtrl.getallUser);
