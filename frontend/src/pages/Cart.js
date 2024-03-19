@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import BreadCrumb from '../components/BreadCrumb'
 import Meta from '../components/Meta'
 import watch from '../images/watch.jpg'
@@ -7,19 +7,36 @@ import { Link } from 'react-router-dom'
 import Container from '../components/Container'
 
 import { useDispatch, useSelector } from "react-redux"
-import { deleteCartProduct, getUserCart } from '../features/user/userSlice'
+import { deleteCartProduct, getUserCart, updateCartProduct } from '../features/user/userSlice'
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const [productUpdateDetail, setProductUpdateDetail] = useState(null);
+
   const userCartState = useSelector(state => state.auth.cartProducts)
   useEffect(() => {
     dispatch(getUserCart())
   }, [])
+  useEffect(() => {
+    if (productUpdateDetail !== null) {
+      dispatch(updateCartProduct({
+        cartItemId: productUpdateDetail?.cartItemId,
+        quantity: productUpdateDetail?.quantity
+      }))
+      setTimeout(() => {
+        dispatch(getUserCart())
+      }, 200)
+    }
+  }, [productUpdateDetail])
   const deleteACartProduct = (id) => {
     dispatch(deleteCartProduct(id))
     setTimeout(() => {
       dispatch(getUserCart())
     }, 200)
+  }
+
+  const updateACartProduct = (productUpdateDetail) => {
+
   }
   return (
     <>
@@ -59,7 +76,11 @@ const Cart = () => {
                         <input
                           type='number'
                           className='form-control' name='' id='' min={1} max={10}
-                          value={item?.quantity}
+                          value={productUpdateDetail?.quantity ? productUpdateDetail?.quantity : item?.quantity}
+                          onChange={(e) => setProductUpdateDetail({
+                            cartItemId: item?._id,
+                            quantity: e.target.value
+                          })}
                         />
                       </div>
                       <div>
