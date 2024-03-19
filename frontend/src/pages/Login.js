@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom'
 import Container from '../components/Container'
 import CustomInput from '../components/CustomInput'
 
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { loginUser } from '../features/user/userSlice'
+import { useNavigate } from "react-router-dom"
 
 let schema = yup.object().shape({
   email: yup.string().email("Email should be valid").required('Email is required'),
@@ -18,6 +19,8 @@ let schema = yup.object().shape({
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authState = useSelector(state => state.auth)
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -28,6 +31,11 @@ const Login = () => {
     validationSchema: schema,
     onSubmit: (values) => {
       dispatch(loginUser(values));
+      setTimeout(() => {
+        if (authState.isSuccess) {
+          navigate('/')
+        }
+      }, 300)
     }
   })
 
