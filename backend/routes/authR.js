@@ -23,7 +23,7 @@ router.post('/cart/create-order', authMiddleware, userCtrl.createOrder);
 router.post('/cart/cash-order', authMiddleware, userCtrl.createOrder);
 
 router.get('/all-users', userCtrl.getallUser);
-router.get('/get-orders', authMiddleware, userCtrl.getOrders);
+router.get('/getmyorders', authMiddleware, userCtrl.getMyOrders);
 router.get('/getallorders', authMiddleware, userCtrl.getAllOrders);
 router.get("/refresh", userCtrl.handleRefreshToken);
 router.get("/logout", userCtrl.logout);

@@ -519,6 +519,18 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
   }
 });
 
+const getMyOrders = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  try {
+    const orders = await orderM.find({ user: _id }).populate('user').populate('orderItems.product').populate('orderItems.color')
+    res.json({
+      orders
+    })
+  } catch (error) {
+    throw new Error(error);
+  }
+})
+
 module.exports = {
   createUser,
   loginUserCtrl,
@@ -547,4 +559,5 @@ module.exports = {
   updateOrderStatus,
   removeProductFromCart,
   updateProductQuantityFromCart,
+  getMyOrders,
 };
