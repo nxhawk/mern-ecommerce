@@ -74,6 +74,14 @@ export const getOrders = createAsyncThunk('user/order/get', async (thunkAPI) => 
   }
 })
 
+export const updateProfile = createAsyncThunk('user/profile/update', async (data, thunkAPI) => {
+  try {
+    return await authService.updateUser(data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+})
+
 
 const getUserfromLocalStorage = localStorage.getItem('customer') ? JSON.parse(localStorage.getItem('customer')) : null
 
@@ -253,7 +261,6 @@ export const authSlice = createSlice({
           toast.error(action.payload?.response?.data?.message || "Something went wrong")
         }
       })
-
       .addCase(getOrders.pending, (state) => {
         state.isLoading = true;
       })
@@ -268,6 +275,28 @@ export const authSlice = createSlice({
         state.isSuccess = false;
         state.isError = true;
         state.message = action.error;
+      })
+
+      .addCase(updateProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.updatedUser = action.payload;
+        if (state.isSuccess === true) {
+          toast.success("Profile updated successfully")
+        }
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+        if (state.isError === true) {
+          toast.error(action.payload?.response?.data?.message || "Something went wrong")
+        }
       })
   }
 })

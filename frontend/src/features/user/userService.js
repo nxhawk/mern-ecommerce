@@ -66,6 +66,13 @@ const getUserOrders = async () => {
   }
 }
 
+const updateUser = async (data) => {
+  const response = await axios.put(`${base_url}user/edit-user`, data, config);
+  if (response.data) {
+    return response.data;
+  }
+}
+
 const authService = {
   register,
   login,
@@ -76,6 +83,7 @@ const authService = {
   updateProductFromCart,
   createOrder,
   getUserOrders,
+  updateUser,
 }
 
 export default authService
