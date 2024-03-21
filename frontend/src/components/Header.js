@@ -24,6 +24,10 @@ const Header = () => {
     setTotal(sum);
   }, [cartState])
 
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
     <>
       <header className='header-top-strip py-3'>
@@ -122,6 +126,10 @@ const Header = () => {
                     <NavLink className="" to='/my-orders'>My Orders</NavLink>
                     <NavLink className="" to='/blogs'>Blogs</NavLink>
                     <NavLink className="" to='/contact'>Contact</NavLink>
+                    <button className='border border-0 bg-transparent text-white text-uppercase' type='button'
+                      onClick={handleLogout}
+                      style={{ fontSize: '15px' }}
+                    >Logout</button>
                   </div>
                 </div>
               </div>
