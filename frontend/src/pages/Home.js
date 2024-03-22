@@ -133,7 +133,8 @@ const Home = () => {
           </div>
         </div>
       </Container>
-      <Container class1='home-wrapper-2 py-5'>
+
+      {/* <Container class1='home-wrapper-2 py-5'>
         <div className='row'>
           <div className='col-12'>
             <div className='categories d-flex justify-content-between align-items-center flex-wrap'>
@@ -197,7 +198,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </Container>
+      </Container> */}
+
       <Container class1='featured-wrapper py-5 home-wrapper-2'>
         <div className='row'>
           <div className='col-12'>
