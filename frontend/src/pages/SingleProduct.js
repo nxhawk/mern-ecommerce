@@ -10,7 +10,7 @@ import { TbGitCompare } from 'react-icons/tb'
 import { AiOutlineHeart } from 'react-icons/ai'
 import Container from '../components/Container'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAProduct } from '../features/products/productSlice'
+import { addRating, getAProduct, getAllProducts } from '../features/products/productSlice'
 
 import { toast } from 'react-toastify';
 import { addProToCart, getUserCart } from '../features/user/userSlice'
@@ -26,11 +26,13 @@ const SingleProduct = () => {
   const getProductId = location.pathname.split('/')[2];
   const dispatch = useDispatch();
   const productState = useSelector((state) => state?.product?.singleproduct)
+  const productsState = useSelector((state) => state?.product?.product)
   const cartState = useSelector((state) => state?.auth?.cartProducts)
 
   useEffect(() => {
     dispatch(getAProduct(getProductId));
     dispatch(getUserCart());
+    dispatch(getAllProducts());
   }, [])
 
   useEffect(() => {
@@ -64,11 +66,46 @@ const SingleProduct = () => {
     document.execCommand('copy')
     textField.remove()
   }
+
+  const [popularProduct, setPopularProduct] = useState([])
+
+  useEffect(() => {
+    let data = []
+    for (let i = 0; i < productsState.length; i++) {
+      const element = productsState[i];
+      if (element.tags === 'popular') {
+        data.push(element)
+      }
+    }
+    setPopularProduct(data);
+  }, [productsState])
+
   const props = { width: 400, height: 500, zoomWidth: 500, img: productState?.images[0]?.url };
+
+  const [star, setStart] = useState(null)
+  const [comment, setComment] = useState(null)
+  const addRatingProduct = () => {
+    if (star === null) {
+      toast.error("Please add star rating")
+      return false;
+    }
+    if (comment === null) {
+      toast.error("Please write review about the product")
+      return false;
+    }
+    dispatch(addRating({
+      star,
+      comment,
+      prodId: getProductId,
+    }))
+    setTimeout(() => {
+      dispatch(getAProduct(getProductId));
+    }, 300);
+  }
   return (
     <>
       <Meta title='Product Name' />
-      <BreadCrumb title='Product Name' />
+      <BreadCrumb title={productState?.title} />
       {
         productState && <>
           <Container class1='main-product-wrapper py-5 home-wrapper-2'>
@@ -228,38 +265,49 @@ const SingleProduct = () => {
                   </div>
                   <div className='review-form py-4'>
                     <h4>Write a Review</h4>
-                    <form action='' className='d-flex flex-column gap-15'>
-                      <div>
-                        <ReactStars
-                          count={5}
-                          size={24}
-                          value="3"
-                          edit={true}
-                          activeColor="#ffd700"
-                        />
-                      </div>
-                      <div>
-                        <textarea name='' id='' rows="3" cols="30" className='w-100 form-control' placeholder='Comments' />
-                      </div>
-                      <div className='d-flex justify-content-end'>
-                        <button className='button border-0'>Submit Review</button>
-                      </div>
-                    </form>
+                    <div>
+                      <ReactStars
+                        count={5}
+                        size={24}
+                        value={star}
+                        edit={true}
+                        activeColor="#ffd700"
+                        onChange={(e) => {
+                          setStart(e)
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <textarea
+                        name='' id='' rows="3" cols="30" className='w-100 form-control' placeholder='Comments'
+                        onChange={(e) => {
+                          setComment(e.target.value)
+                        }}
+                      />
+                    </div>
+                    <div className='d-flex justify-content-end mt-3'>
+                      <button onClick={addRatingProduct} className='button border-0' type='submit'>Submit Review</button>
+                    </div>
                   </div>
                   <div className='reviews mt-4'>
-                    <div className='review'>
-                      <div className='d-flex gap-10 align-items-center'>
-                        <h6 className='mb-0'>Navdeep</h6>
-                        <ReactStars
-                          count={5}
-                          size={24}
-                          value="3"
-                          edit={true}
-                          activeColor="#ffd700"
-                        />
-                      </div>
-                      <p className='mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et placerat sem. Aliquam euismod tincidunt risus, eu consectetur enim congue non. Nunc et velit non magna facilisis congue sed a enim. Maecenas interdum ex eget nunc consectetur, et placerat risus consectetur.</p>
-                    </div>
+                    {
+                      productState && productState?.ratings?.map((i, index) => {
+                        return (
+                          <div className='review' key={index}>
+                            <div className='d-flex gap-10 align-items-center'>
+                              <ReactStars
+                                count={5}
+                                size={24}
+                                value={i?.star}
+                                edit={true}
+                                activeColor="#ffd700"
+                              />
+                            </div>
+                            <p className='mt-3'>{i?.comment}</p>
+                          </div>
+                        )
+                      })
+                    }
                   </div>
                 </div>
               </div>
@@ -272,7 +320,7 @@ const SingleProduct = () => {
               </div>
             </div>
             <div className='row'>
-              <ProductCard />
+              <ProductCard data={popularProduct} />
             </div>
           </Container>
         </>

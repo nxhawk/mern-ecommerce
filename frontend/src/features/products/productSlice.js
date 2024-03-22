@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import productService from "./productService"
+import { toast } from 'react-toastify';
 
 export const getAllProducts = createAsyncThunk('product/get', async (thunkAPI) => {
   try {
@@ -20,6 +21,15 @@ export const getAProduct = createAsyncThunk('product/getAProduct', async (id, th
 export const addToWishlist = createAsyncThunk('product/wishlist', async (proId, thunkAPI) => {
   try {
     return await productService.addToWishlist(proId);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+})
+
+
+export const addRating = createAsyncThunk('product/rating', async (data, thunkAPI) => {
+  try {
+    return await productService.rateProduct(data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
@@ -87,6 +97,29 @@ export const productSlice = createSlice({
         state.isSuccess = false;
         state.isError = true;
         state.message = action.error;
+      })
+
+      .addCase(addRating.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addRating.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.rating = action.payload;
+        state.message = "Rating Added Successfully!";
+        if (state.isSuccess === true) {
+          toast.success("Rating added Successfully")
+        }
+      })
+      .addCase(addRating.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.isError = true;
+        state.message = action.error;
+        if (state.isError === true) {
+          toast.error(action.payload?.response?.data?.message || "Something went wrong")
+        }
       })
   }
 })

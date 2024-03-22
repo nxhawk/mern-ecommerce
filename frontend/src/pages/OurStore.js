@@ -24,6 +24,8 @@ const OurStore = () => {
   const getProducts = () => {
     dispatch(getAllProducts());
   }
+
+
   const productState = useSelector((state) => state.product.product)
 
   return (
@@ -170,7 +172,9 @@ const OurStore = () => {
             </div>
             <div className='products-list pb-5'>
               <div className='d-flex gap-10 flex-wrap'>
-                <ProductCard data={productState ? productState : []} grid={grid} />
+                <ProductCard
+                  data={productState ? productState : []}
+                  grid={grid} />
               </div>
             </div>
           </div>

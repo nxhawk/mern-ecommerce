@@ -53,15 +53,15 @@ const ProductCard = ({ grid, data }) => {
                 </div>
                 <div className='action-bar position-absolute'>
                   <div className='d-flex flex-column gap-15'>
-                    <Link>
+                    {/* <Link>
                       <img src={productcompare} alt='prodcompare' />
-                    </Link>
+                    </Link> */}
                     <Link to={`/product/${item?._id}`}>
                       <img src={view} alt='view' />
                     </Link>
-                    <Link>
+                    {/* <Link>
                       <img src={addcart} alt='addcart' />
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </div>
